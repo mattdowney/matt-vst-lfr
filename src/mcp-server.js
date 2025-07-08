@@ -2,6 +2,7 @@
 
 const { McpServer } = require('@modelcontextprotocol/sdk/server/mcp.js');
 const { StdioServerTransport } = require('@modelcontextprotocol/sdk/server/stdio.js');
+const { z } = require('zod');
 
 // Voice/Style/Tone data
 const voiceData = {
@@ -169,6 +170,76 @@ mcpServer.registerResource('voice://matt/banned-elements', {
         uri: 'voice://matt/banned-elements',
         mimeType: 'text/plain',
         text: voiceData.voice.banned.join('\n'),
+      },
+    ],
+  };
+});
+
+// Register tools
+mcpServer.registerTool('apply-voice-style', {
+  description: 'Apply Matt\'s voice, style, and tone guidelines to improve text',
+  inputSchema: {
+    text: z.string().describe('Text to improve using Matt\'s voice and style guidelines'),
+  },
+}, async ({ text }) => {
+  const guidelines = `
+**Matt's Voice & Style Guidelines Applied:**
+
+**Original:** ${text}
+
+**Improved with Matt's Voice:**
+- Remove any rhetorical questions (${voiceData.voice.banned.includes('Hypophora') ? '✓ Avoiding hypophora' : ''})
+- Make it ${voiceData.voice.tone}
+- Structure: ${voiceData.voice.style}
+- Position as: ${voiceData.voice.positioning}
+
+**Key Improvements:**
+• ${voiceData.voice.signatureMoves[0]}
+• ${voiceData.voice.signatureMoves[1]}
+• ${voiceData.voice.signatureMoves[2]}
+
+**Avoided:**
+• ${voiceData.voice.banned.slice(0, 3).join('\n• ')}
+
+**Suggested Revision:**
+[Apply the above guidelines to create a more grounded, no-polish version that shows work rather than postures]
+`;
+
+  return {
+    content: [
+      {
+        type: 'text',
+        text: guidelines,
+      },
+    ],
+  };
+});
+
+mcpServer.registerTool('get-voice-guidelines', {
+  description: 'Get a quick reference of Matt\'s voice, style, and tone guidelines',
+  inputSchema: {},
+}, async () => {
+  return {
+    content: [
+      {
+        type: 'text',
+        text: `**Matt's Voice Guidelines:**
+
+**Tone:** ${voiceData.voice.tone}
+**Style:** ${voiceData.voice.style}
+**Positioning:** ${voiceData.voice.positioning}
+
+**Do:**
+${voiceData.voice.signatureMoves.map(move => `• ${move}`).join('\n')}
+
+**Never:**
+${voiceData.voice.banned.map(item => `• ${item}`).join('\n')}
+
+**Formatting:**
+• Paragraphs: ${voiceData.voice.formatting.paragraphs}
+• Headings: ${voiceData.voice.formatting.headings}
+• Emphasis: ${voiceData.voice.formatting.emphasis}
+• Spacing: ${voiceData.voice.formatting.spacing}`,
       },
     ],
   };
