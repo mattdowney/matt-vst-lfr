@@ -25,7 +25,7 @@ Add to your `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "matt-vst-lfr": {
+    "Voice and Tone": {
       "type": "stdio",
       "command": "matt-vst-lfr-mcp",
       "args": [],
@@ -34,6 +34,26 @@ Add to your `~/.cursor/mcp.json`:
   }
 }
 ```
+
+### Setup on New Machines/Projects
+
+1. **Install GitHub CLI and authenticate:**
+   ```bash
+   gh auth login
+   ```
+
+2. **Configure npm for GitHub Package Registry:**
+   ```bash
+   echo "@mattdowney:registry=https://npm.pkg.github.com" >> ~/.npmrc
+   echo "//npm.pkg.github.com/:_authToken=$(gh auth token)" >> ~/.npmrc
+   ```
+
+3. **Install globally:**
+   ```bash
+   npm install -g @mattdowney/matt-vst-lfr-mcp@latest
+   ```
+
+4. **Add to your project's `mcp.json`** and restart Cursor
 
 ### Local Development
 ```bash
@@ -58,6 +78,14 @@ Available prompts:
 - `voice-style-tone` - Complete voice profile
 - `writing-guidelines` - Core writing rules
 - `banned-phrases` - What to avoid
+
+### Tools
+- `GET /mcp/tools/list` - List available tools
+- `POST /mcp/tools/call` - Call specific tool
+
+Available tools:
+- `apply-voice-style` - Apply Matt's voice guidelines to improve text
+- `get-voice-guidelines` - Get quick reference of voice guidelines
 
 ### Resources
 - `GET /mcp/resources/list` - List available resources
