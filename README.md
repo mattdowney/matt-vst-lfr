@@ -2,14 +2,37 @@
 
 HTTP server implementing the Model Context Protocol (MCP) to serve Matt's voice, style, and tone preferences.
 
-## Local Setup
+## Installation
 
+### Global Installation (Recommended)
 ```bash
-npm install
-npm start
+npm install -g @mattdowney/matt-vst-lfr-mcp
 ```
 
-Server runs on `http://localhost:3000`
+### Use in Cursor IDE
+Add to your `~/.cursor/mcp.json`:
+```json
+{
+  "mcpServers": {
+    "matt-vst-lfr": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@mattdowney/matt-vst-lfr-mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+### Local Development
+```bash
+git clone https://github.com/mattdowney/matt-vst-lfr.git
+cd matt-vst-lfr
+npm install
+npm run mcp
+```
+
+HTTP server (optional) runs on `http://localhost:3000`
 
 ## MCP Endpoints
 
