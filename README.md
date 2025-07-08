@@ -55,20 +55,11 @@ curl -X POST http://localhost:3000/mcp/prompts/get \
 
 ## Deployment
 
-### Railway (Recommended)
-1. Push to GitHub
-2. Connect repository to [Railway](https://railway.app)
-3. Deploy automatically
-
-### Render
-1. Connect GitHub repository to [Render](https://render.com)
-2. Set build command: `npm install`
-3. Set start command: `npm start`
-
 ### Vercel
 1. Install Vercel CLI: `npm i -g vercel`
 2. Run: `vercel`
 3. Follow prompts
+4. Your MCP server will be available at: `https://your-project.vercel.app`
 
 ## GitHub Setup
 
