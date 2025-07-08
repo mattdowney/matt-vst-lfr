@@ -51,4 +51,29 @@ curl -X POST http://localhost:3000/mcp/prompts/get \
 
 ## Health Check
 
-`GET /health` - Server health status 
+`GET /health` - Server health status
+
+## Deployment
+
+### Railway (Recommended)
+1. Push to GitHub
+2. Connect repository to [Railway](https://railway.app)
+3. Deploy automatically
+
+### Render
+1. Connect GitHub repository to [Render](https://render.com)
+2. Set build command: `npm install`
+3. Set start command: `npm start`
+
+### Vercel
+1. Install Vercel CLI: `npm i -g vercel`
+2. Run: `vercel`
+3. Follow prompts
+
+## GitHub Setup
+
+```bash
+# Create repository on GitHub, then:
+git remote add origin https://github.com/yourusername/matt-vst-lfr.git
+git push -u origin master
+``` 
