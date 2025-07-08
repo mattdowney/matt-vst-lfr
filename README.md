@@ -2,7 +2,18 @@
 
 HTTP server implementing the Model Context Protocol (MCP) to serve Matt's voice, style, and tone preferences.
 
-## Installation
+## Installation (Private Package)
+
+### Prerequisites
+You need access to this private repository and GitHub authentication configured:
+```bash
+# Authenticate with GitHub (if not already done)
+gh auth login
+
+# Add GitHub Package Registry configuration
+echo "@mattdowney:registry=https://npm.pkg.github.com" >> ~/.npmrc
+echo "//npm.pkg.github.com/:_authToken=$(gh auth token)" >> ~/.npmrc
+```
 
 ### Global Installation (Recommended)
 ```bash
@@ -16,8 +27,8 @@ Add to your `~/.cursor/mcp.json`:
   "mcpServers": {
     "matt-vst-lfr": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["@mattdowney/matt-vst-lfr-mcp"],
+      "command": "matt-vst-lfr-mcp",
+      "args": [],
       "env": {}
     }
   }
