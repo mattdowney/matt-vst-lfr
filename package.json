@@ -1,6 +1,9 @@
 {
   "name": "@mattdowney/matt-vst-lfr-mcp",
-  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "version": "1.0.1",
   "description": "MCP server for Matt's voice, style, and tone preferences",
   "main": "src/mcp-server.js",
   "bin": {
