@@ -59,7 +59,10 @@ curl -X POST http://localhost:3000/mcp/prompts/get \
 1. Install Vercel CLI: `npm i -g vercel`
 2. Run: `vercel`
 3. Follow prompts
-4. Your MCP server will be available at: `https://your-project.vercel.app`
+4. **Disable Protection**: Go to your Vercel dashboard → Project Settings → Security → Disable "Vercel Authentication"
+5. Your MCP server will be available at: `https://your-project.vercel.app`
+
+**Note**: By default, Vercel Pro accounts enable authentication protection. You must disable this in the dashboard for public API access.
 
 ## GitHub Setup
 
